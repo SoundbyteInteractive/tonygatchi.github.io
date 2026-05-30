@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>TONYGATCHI — Twitch Chat Tamagotchi</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@400;600;700&amp;family=Barlow:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
   :root {
     --red: #c0392b;
@@ -897,7 +898,7 @@
     z-index: 1;
   }
 
-  /* ── FOOTER ── yea */
+  /* ── FOOTER ── */
   footer {
     background: var(--pixel);
     padding: 32px 5vw;
@@ -1057,295 +1058,1134 @@
     .pricing-inner { grid-template-columns: 1fr; }
     .proof-bar { gap: 24px; justify-content: center; flex-wrap: wrap; }
   }
+
+
+/* TONYGATCHI DEMO MERGE */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+/* Background texture */
+
+
+.demo-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  max-width: 440px;
+  width: 100%;
+}
+
+/* Title above device */
+.demo-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  letter-spacing: 0.06em;
+  color: #f5f0e8;
+  margin-bottom: 4px;
+  text-align: center;
+}
+.demo-title span { color: #e74c3c; }
+.demo-subtitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #7a6555;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+/* === DEVICE SHELL === */
+.device {
+  width: 100%;
+  max-width: 380px;
+  background: #1a0f0a;
+  border: 3px solid #3a2e28;
+  border-radius: 32px;
+  padding: 20px 20px 0;
+  box-shadow: 0 0 60px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05);
+  position: relative;
+}
+
+/* Gold corner accents */
+.device::before, .device::after {
+  content: '';
+  position: absolute;
+  width: 24px; height: 24px;
+  border-color: #c0392b;
+  border-style: solid;
+}
+.device::before { top: 10px; left: 10px; border-width: 2px 0 0 2px; border-radius: 4px 0 0 0; }
+.device::after  { top: 10px; right: 10px; border-width: 2px 2px 0 0; border-radius: 0 4px 0 0; }
+
+/* Device top label */
+.device-top-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding: 0 4px;
+}
+.device-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.18em;
+  color: #5a4e48;
+}
+.device-status-dots {
+  display: flex;
+  gap: 5px;
+}
+.device-status-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #2a2018;
+  border: 1px solid #3a2e28;
+}
+.device-status-dot.active { background: #c0392b; animation: dotPulse 2s ease-in-out infinite; }
+@keyframes dotPulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* === SCREEN === */
+.screen-outer {
+  background: #060402;
+  border: 3px solid #2a2018;
+  border-radius: 12px;
+  padding: 3px;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+}
+.screen {
+  background: #080603;
+  border-radius: 10px;
+  width: 100%;
+  aspect-ratio: 1/1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Scanlines overlay */
+.screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(transparent,transparent 3px,rgba(0,0,0,0.25) 3px,rgba(0,0,0,0.25) 4px);
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* Screen corner brackets */
+.screen-corner { position: absolute; width: 10px; height: 10px; border-color: #c0392b; border-style: solid; z-index: 5; }
+.screen-corner.tl { top: 8px; left: 8px; border-width: 2px 0 0 2px; }
+.screen-corner.tr { top: 8px; right: 8px; border-width: 2px 2px 0 0; }
+.screen-corner.bl { bottom: 8px; left: 8px; border-width: 0 0 2px 2px; }
+.screen-corner.br { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; }
+
+/* === STAT BARS === */
+.stat-bars {
+  position: absolute;
+  top: 12px; left: 14px; right: 14px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.stat-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6a5a50;
+  width: 44px;
+  flex-shrink: 0;
+  text-align: right;
+}
+.stat-track {
+  flex: 1;
+  height: 5px;
+  background: #1a1410;
+  border: 1px solid #2a2018;
+  overflow: hidden;
+}
+.stat-fill {
+  height: 100%;
+  transition: width 1.2s ease;
+}
+.stat-fill.hunger { background: #e67e22; }
+.stat-fill.loyalty { background: #c0392b; }
+
+/* === CHARACTER AREA === */
+.character-area {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  margin-top: 8px;
+}
+
+.sprite-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sprite {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  position: absolute;
+  top: 0; left: 0;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+.sprite.active { opacity: 1; }
+
+/* Idle bob animation applied via JS */
+.sprite-container.bobbing { animation: spriteBob 1.6s ease-in-out infinite; }
+@keyframes spriteBob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+
+/* Event flash effects */
+@keyframes flashWhite { 0%,100%{filter:brightness(1)} 25%,75%{filter:brightness(2) saturate(0)} }
+@keyframes shakeDevice { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+
+/* === CHAT LOG === */
+.chat-log {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 64px;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 60%, transparent);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 10px 8px;
+  overflow: hidden;
+}
+.chat-line {
+  font-size: 12px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a7870;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 0.3s ease;
+  line-height: 1.5;
+}
+.chat-line.visible { opacity: 1; transform: translateY(0); }
+.chat-line .chat-user { color: #e74c3c; }
+.chat-line .chat-user.gold { color: #f1c40f; }
+.chat-line.event-msg { color: #c0392b; font-weight: 700; }
+
+/* Event overlay (shows event sprite over Tony) */
+.event-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 15;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+.event-overlay.show { opacity: 1; }
+.event-overlay img {
+  image-rendering: pixelated;
+  width: 170px;
+  height: 170px;
+  object-fit: contain;
+}
+
+/* === DEVICE BOTTOM DECORATION === */
+.device-bottom-bar {
+  padding: 14px 20px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.device-model {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #4a3e38;
+}
+.device-bottom-dots {
+  display: flex;
+  gap: 8px;
+}
+.device-bottom-dot {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid #3a2e28;
+  background: transparent;
+}
+.device-bottom-dot:first-child { background: rgba(192,57,43,0.2); border-color: rgba(192,57,43,0.4); }
+
+/* === BUTTONS === */
+.buttons-section {
+  width: 100%;
+  max-width: 380px;
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.action-btn {
+  background: #1a0f0a;
+  border: 2px solid #3a2e28;
+  color: #c4b89e;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  user-select: none;
+}
+
+.action-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(192,57,43,0);
+  transition: background 0.15s;
+}
+.action-btn:hover:not(:disabled)::before { background: rgba(192,57,43,0.08); }
+.action-btn:active:not(:disabled)::before { background: rgba(192,57,43,0.2); }
+
+.action-btn:hover:not(:disabled) {
+  border-color: #c0392b;
+  color: #f5f0e8;
+  transform: translateY(-1px);
+}
+.action-btn:active:not(:disabled) { transform: translateY(1px); }
+
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+.action-btn:disabled::before { display: none; }
+
+.btn-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+.btn-label { font-size: 11px; }
+.btn-trigger {
+  font-size: 8px;
+  color: #c0392b;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+}
+.action-btn:disabled .btn-trigger { color: #5a4e48; }
+
+/* Cooldown progress bar inside button */
+.btn-cooldown {
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 2px;
+  background: #c0392b;
+  width: 0%;
+  transition: none;
+}
+
+/* === CTA AREA === */
+.cta-area {
+  margin-top: 20px;
+  text-align: center;
+  max-width: 380px;
+  width: 100%;
+}
+.cta-text {
+  font-size: 12px;
+  color: #5a4e48;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+}
+.cta-btn {
+  display: inline-block;
+  background: #c0392b;
+  color: #f5f0e8;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 14px 36px;
+  text-decoration: none;
+  transition: background 0.15s;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+.cta-btn::after {
+  content: '';
+  position: absolute;
+  right: -4px; bottom: -4px;
+  width: 100%; height: 100%;
+  border: 2px solid #922b21;
+  pointer-events: none;
+}
+.cta-btn:hover { background: #e74c3c; }
+
+/* Responsive */
+@media (max-width: 440px) {
+  .device { border-radius: 24px; }
+  .sprite-container { width: 120px; height: 120px; }
+  .sprite { width: 120px; height: 120px; }
+}
+
+
+/* === MERGED DEMO FIXES === */
+.hero-right {
+  align-items: center !important;
+  padding-bottom: 60px;
+}
+
+.hero-right .demo-wrapper {
+  width: 100%;
+  max-width: 420px;
+  margin-inline: auto;
+}
+
+.hero-right .demo-title,
+.hero-right .demo-subtitle,
+.hero-right .cta-area {
+  display: none !important;
+}
+
+.hero-right .buttons-section {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  width: 100% !important;
+  max-width: 380px !important;
+  margin: 16px auto 0 auto !important;
+}
+
+.hero-right .device {
+  overflow: visible !important;
+}
+
+@media (max-width: 980px) {
+  .hero {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+    padding-bottom: 60px !important;
+  }
+
+  .hero-right {
+    margin-top: 40px;
+  }
+}
 </style>
 </head>
 <body>
-
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">TONY<span>GATCHI</span></div>
-  <a href="https://www.paypal.com/ncp/payment/3WUJHJ9S5NE42" class="nav-cta">Get It — $47</a>
+<div class="nav-logo">TONY<span>GATCHI</span></div>
+<a class="nav-cta" href="https://www.paypal.com/ncp/payment/3WUJHJ9S5NE42">Get It — $47</a>
 </nav>
-
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <div class="hero-eyebrow">Interactive Twitch Chat Overlay</div>
-    <h1 class="hero-title display">TONY<br><span class="highlight">GATCHI</span></h1>
-    <p class="hero-subtitle condensed">Your Chat Controls the Boss</p>
-    <p class="hero-description">A Chaotic, Retro Tamagotchi-inspired live stream companion that your Twitch chat can control in real time. Subs, bits, raids.... they all feed the beast.</p>
-    <div class="hero-actions">
-      <a href="https://www.paypal.com/ncp/payment/3WUJHJ9S5NE42" class="btn-primary">Get Instant Access</a>
-      <div class="price-badge">$47 <span>one-time</span></div>
-    </div>
-    <div class="hero-tags">
-      <span class="hero-tag">Subs</span>
-      <span class="hero-tag">Bits</span>
-      <span class="hero-tag">Raids</span>
-      <span class="hero-tag">Resubs</span>
-      <span class="hero-tag">OBS-Ready</span>
-      <span class="hero-tag">8-Bit Pixel Art</span>
-    </div>
-  </div>
+<div class="hero-left">
+<div class="hero-eyebrow">Interactive Twitch Chat Overlay</div>
+<h1 class="hero-title display">TONY<br/><span class="highlight">GATCHI</span></h1>
+<p class="hero-subtitle condensed">Your Chat Controls the Boss</p>
+<p class="hero-description">A Chaotic, Retro Tamagotchi-inspired live stream companion that your Twitch chat can control in real time. Subs, bits, raids.... they all feed the beast.</p>
+<div class="hero-actions">
+<a class="btn-primary" href="https://www.paypal.com/ncp/payment/3WUJHJ9S5NE42">Get Instant Access</a>
+<div class="price-badge">$47 <span>one-time</span></div>
+</div>
+<div class="hero-tags">
+<span class="hero-tag">Subs</span>
+<span class="hero-tag">Bits</span>
+<span class="hero-tag">Raids</span>
+<span class="hero-tag">Resubs</span>
+<span class="hero-tag">OBS-Ready</span>
+<span class="hero-tag">8-Bit Pixel Art</span>
+</div>
+</div>
+<div class="hero-right">
+<div class="pixel-device"><div class="demo-wrapper">
+<div class="demo-title">TONY<span>GATCHI</span></div>
+<div class="demo-subtitle">Interactive Demo — Try It Live</div>
+<!-- DEVICE -->
+<div class="device" id="device">
+<!-- Top label -->
+<div class="device-top-label">
+<span class="device-brand">TONYGATCHI v1.0</span>
+<div class="device-status-dots">
+<div class="device-status-dot active"></div>
+<div class="device-status-dot"></div>
+<div class="device-status-dot"></div>
+</div>
+</div>
+<!-- Screen -->
+<div class="screen-outer">
+<div class="screen" id="screen">
+<!-- Corner brackets -->
+<div class="screen-corner tl"></div>
+<div class="screen-corner tr"></div>
+<div class="screen-corner bl"></div>
+<div class="screen-corner br"></div>
+<!-- Stat bars -->
+<div class="stat-bars">
+<div class="stat-row">
+<span class="stat-label">Hunger</span>
+<div class="stat-track"><div class="stat-fill hunger" id="hungerFill" style="width:65%"></div></div>
+</div>
+<div class="stat-row">
+<span class="stat-label">Loyalty</span>
+<div class="stat-track"><div class="stat-fill loyalty" id="loyaltyFill" style="width:40%"></div></div>
+</div>
+</div>
+<!-- Character -->
+<div class="character-area">
+<div class="sprite-container bobbing" id="spriteContainer">
 
-  <div class="hero-right">
-    <div class="pixel-device">
-      <div class="pixel-screen-wrap">
-        <div class="pixel-screen">
-          <!-- Corners -->
-          <div class="screen-corner tl"></div>
-          <div class="screen-corner tr"></div>
-          <div class="screen-corner bl"></div>
-          <div class="screen-corner br"></div>
-          <!-- Mood bars -->
-          <div class="mood-bars">
-            <span class="mood-label">Mood</span>
-            <div class="mood-track"><div class="mood-fill"></div></div>
-            <span class="mood-label" style="text-align:right">Hunger</span>
-            <div class="mood-track"><div class="mood-fill hunger"></div></div>
-          </div>
-          <!-- Tony Pixel Art SVG -->
-         <div class="pixel-tony tony-idle"></div>
+<!-- ── IDLE frames ── -->
+<img alt="" class="sprite active" id="s-idle0" src="tonyG.png" />
+<img alt="" class="sprite"        id="s-idle1" src="tony_2.png" />
+<img alt="" class="sprite"        id="s-idle2" src="tony_3.png" />
 
+<!-- ── FEED / EAT frames ── -->
+<img class="sprite" id="s-eat0" src="food.png" />
+<img class="sprite" id="s-eat1" src="food1.png" />
+<img class="sprite" id="s-eat2" src="food2.png" />
+<img class="sprite" id="s-eat3" src="food3.png" />
 
-          <!-- Chat ticker -->
-          <div class="chat-ticker">
-            <div class="chat-ticker-inner">
-              <span class="chat-msg"><span class="user">comb:</span> !food</span>
-              <span class="chat-msg"><span class="user">TheBurntPeanut:</span> RAID INCOMING 🚨</span>
-              <span class="chat-msg"><span class="user">SubGifter:</span> gifted 5 subs!</span>
-              <span class="chat-msg"><span class="user">BitKing:</span> cheer500 FUGGEDABOUTIT</span>
-              <span class="chat-msg"><span class="user">xXPogChampXx:</span> !feed</span>
-              <span class="chat-msg"><span class="user">RaidBoss99:</span> RAID INCOMING 🚨</span>
-              <span class="chat-msg"><span class="user">SubGifter:</span> gifted 5 subs!</span>
-              <span class="chat-msg"><span class="user">BitKing:</span> cheer500 FUGGEDABOUTIT</span>
-            </div>
-          </div>
-          <!-- Scanlines -->
-          <div class="screen-scanlines"></div>
-        </div>
-      </div>
-      <div class="device-label">
-        <span class="device-label-text">TONYGATCHI v1.0 — OBS OVERLAY</span>
-        <div class="device-buttons">
-          <div class="device-btn b1"></div>
-          <div class="device-btn b2"></div>
-          <div class="device-btn b3"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- ── GIFT SUBS frames ── -->
+<img class="sprite" id="s-subs0" src="C:\Users\brigh\Desktop\tonygotchi_stuff\subs0.png" />
+<img class="sprite" id="s-subs1" src="C:\Users\brigh\Desktop\tonygotchi_stuff\subs1.png" />
+<img class="sprite" id="s-subs2" src="C:\Users\brigh\Desktop\tonygotchi_stuff\subs2.png" />
+<img class="sprite" id="s-subs3" src="C:\Users\brigh\Desktop\tonygotchi_stuff\subs3.png" />
+
+<!-- ── RAID frames ── -->
+<img class="sprite" id="s-raid0" src="C:\Users\brigh\Desktop\tonygotchi_stuff\Raid.png" />
+<img class="sprite" id="s-raid1" src="C:\Users\brigh\Desktop\tonygotchi_stuff\Raid1.png" />
+<img class="sprite" id="s-raid2" src="C:\Users\brigh\Desktop\tonygotchi_stuff\Raid2.png" />
+<img class="sprite" id="s-raid3" src="C:\Users\brigh\Desktop\tonygotchi_stuff\Raid3.png" />
+
+<!-- ── MOB BUSINESS frames ── -->
+<img class="sprite" id="s-mob0" src="C:\Users\brigh\Desktop\tonygotchi_stuff\Mob.png" />
+<img class="sprite" id="s-mob1" src="C:\Users\brigh\Desktop\tonygotchi_stuff\Mob1.png" />
+<img class="sprite" id="s-mob2" src="C:\Users\brigh\Desktop\tonygotchi_stuff\Mob2.png" />
+<img class="sprite" id="s-mob3" src="C:\Users\brigh\Desktop\tonygotchi_stuff\Mob3.png" />
+
+<!-- ── MOTEL CHECK-IN frames ── -->
+<img class="sprite" id="s-motel0" src="C:\Users\brigh\Desktop\tonygotchi_stuff\Motel.png" />
+<img class="sprite" id="s-motel1" src="C:\Users\brigh\Desktop\tonygotchi_stuff\Motel1.png" />
+<img class="sprite" id="s-motel2" src="C:\Users\brigh\Desktop\tonygotchi_stuff\Motel2.png" />
+<img class="sprite" id="s-motel3" src="C:\Users\brigh\Desktop\tonygotchi_stuff\Motel3.png" />
+
+<!-- ── BITS CHECK-IN frames ── -->
+<img class="sprite" id="s-bits0" src="C:\Users\brigh\Desktop\tonygotchi_stuff\bits.png" />
+<img class="sprite" id="s-bits1" src="C:\Users\brigh\Desktop\tonygotchi_stuff\bits1.png" />
+<img class="sprite" id="s-bits2" src="C:\Users\brigh\Desktop\tonygotchi_stuff\bits2.png" />
+<img class="sprite" id="s-bits3" src="C:\Users\brigh\Desktop\tonygotchi_stuff\bits3.png" />
+
+</div>
+</div>
+<!-- Event overlays -->
+<div class="event-overlay" id="overlay-bits">
+<img alt="Bits rain" src="data:image/png;base64,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"/>
+</div>
+<div class="event-overlay" id="overlay-raid">
+<img src="raid.png" alt="FBI Raid" style="image-rendering:pixelated;width:160px;height:160px;object-fit:contain;">
+</div>
+<div class="event-overlay" id="overlay-subs">
+<img alt="Put the subs in the bag" src="data:image/png;base64,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"/>
+</div>
+<!-- Chat log -->
+<div class="chat-log" id="chatLog">
+<div class="chat-line visible"><span class="chat-user gold">Honeycomb:</span> !feed tony</div>
+<div class="chat-line visible"><span class="chat-user">RaidBoss99:</span> LUL he's hungry again</div>
+</div>
+</div>
+</div>
+<!-- Device bottom bar -->
+<div class="device-bottom-bar">
+<span class="device-model">DEMO EDITION</span>
+<div class="device-bottom-dots">
+<div class="device-bottom-dot"></div>
+<div class="device-bottom-dot"></div>
+<div class="device-bottom-dot"></div>
+</div>
+</div>
+</div>
+<!-- BUTTONS -->
+<div class="buttons-section">
+<button class="action-btn" id="btn-feed" onclick="triggerEvent('feed')">
+<span class="btn-icon">🍕</span>
+<span class="btn-label">FEED TONY</span>
+<span class="btn-trigger">CHAT: !feed</span>
+<div class="btn-cooldown" id="cd-feed"></div>
+</button>
+<button class="action-btn" id="btn-subs" onclick="triggerEvent('subs')">
+<span class="btn-icon">💰</span>
+<span class="btn-label">GIFT SUBS</span>
+<span class="btn-trigger">TRIGGER: GIFTED SUBS</span>
+<div class="btn-cooldown" id="cd-subs"></div>
+</button>
+<button class="action-btn" id="btn-raid" onclick="triggerEvent('raid')">
+<span class="btn-icon">🚨</span>
+<span class="btn-label">INCOMING RAID</span>
+<span class="btn-trigger">TRIGGER: RAID</span>
+<div class="btn-cooldown" id="cd-raid"></div>
+</button>
+<button class="action-btn" id="btn-bits" onclick="triggerEvent('bits')">
+<span class="btn-icon">💸</span>
+<span class="btn-label">CHEER BITS</span>
+<span class="btn-trigger">TRIGGER: BIT DONATION</span>
+<div class="btn-cooldown" id="cd-bits"></div>
+</button>
+<button class="action-btn" id="btn-mob" onclick="triggerEvent('mob')">
+<span class="btn-icon">🔪</span>
+<span class="btn-label">MOB BUSINESS</span>
+<span class="btn-trigger">CHAT: !mob</span>
+<div class="btn-cooldown" id="cd-mob"></div>
+</button>
+<button class="action-btn" id="btn-motel" onclick="triggerEvent('motel')">
+<span class="btn-icon">🏨</span>
+<span class="btn-label">CHECK IN</span>
+<span class="btn-trigger">CHAT: !motel</span>
+<div class="btn-cooldown" id="cd-motel"></div>
+</button>
+<!-- CTA -->
+</div>
+<script>
+// ═══ TONYGATCHI INTERACTIVE DEMO ═══
+(function() {
+
+  // ── State ───────────────────────────────────────────────────────
+  var hunger     = 65;
+  var loyalty    = 40;
+  var idleFrame  = 0;
+  var idleTimer  = null;   // setInterval for idle cycling
+  var animTimer  = null;   // setInterval for event sprite cycling
+  var eventTimer = null;   // setTimeout to end the event
+  var isEvent    = false;
+
+  var COOLDOWN_MS  = 12000;  // button cooldown
+  var EVENT_MS     = 10000;  // how long an event lasts
+  var ANIM_SPEED   = 2500;    // ms per frame for event animations
+
+  var cooldowns = {
+    feed: false, subs: false, raid: false,
+    bits: false, mob: false, motel: false
+  };
+
+  // ── Sprite frame sets ────────────────────────────────────────────
+  // Each event gets 4 frames. The idle set has 3.
+  var idleFrameIds = ['s-idle0', 's-idle1', 's-idle2'];
+
+  var eventFrames = {
+    feed:  ['s-eat0',   's-eat1',   's-eat2',   's-eat3'],
+    subs:  ['s-subs0',  's-subs1',  's-subs2',  's-subs3'],
+    raid:  ['s-raid0',  's-raid1',  's-raid2',  's-raid3'],
+    mob:   ['s-mob0',   's-mob1',   's-mob2',   's-mob3'],
+	bits:  ['s-bits0',   's-bits1',   's-bits2',   's-bits3'],
+    motel: ['s-motel0', 's-motel1', 's-motel2', 's-motel3'],
+    // bits has no in-sprite animation — uses the overlay image
+   
+  };
+
+  // All sprite IDs that ever get toggled (so hideAll() covers them)
+  var allSpriteIds = (function() {
+    var ids = idleFrameIds.slice();
+    Object.keys(eventFrames).forEach(function(k) {
+      if (eventFrames[k]) eventFrames[k].forEach(function(id) { ids.push(id); });
+    });
+    return ids;
+  })();
+
+  // ── Chat messages per event ──────────────────────────────────────
+  var chatMessages = {
+    feed:  [['Honeycomb','gold','!feed'],['PogPrincess_','','WutFace he ate it OMEGALUL'],['T-pain2','','Tony needs MORE']],
+    subs:  [['Skrillex','gold','gifted 5 subs!'],['Tony_Fan99','','PUT THE SUBS IN THE BAG'],['UncleJoeShow','','Sopranos vs Neph Network']],
+    raid:  [['RaidBoss99','gold','RAID INCOMING \uD83D\uDEA8'],['Honeycomb','','FBI BUSTING IN LMAO'],['ChaosViewer','','FUGGEDABOUTIT PogChamp']],
+    bits:  [['BURNTPEANUT','gold','cheer500 FUGGEDABOUTIT'],['xXPogChampXx','','IT\'S RAININ BITS \uD83D\uDCB8'],['Honeycomb','','LETS GOOO HeyGuys']],
+    mob:   [['PauleyWalnuts','gold','!mob'],['ChaosViewer','','Tony handling BUSINESS LUL'],['UnclejoeShow','','the family sends their regards']],
+    motel: [['Honeycomb','gold','!motel'],['TigBitties','','Tony checking into the Bada Bing OMEGALUL'],['xXPogChampXx','','thats one legitimate business LUL']]
+  };
+
+  // ── Sprite helpers ───────────────────────────────────────────────
+  function hideAll() {
+    allSpriteIds.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.classList.remove('active');
+    });
+  }
+
+  function showSprite(id) {
+    hideAll();
+    var el = document.getElementById(id);
+    if (el) el.classList.add('active');
+  }
+
+  function resetToIdle() {
+    stopAnim();
+    hideAll();
+    var el = document.getElementById(idleFrameIds[idleFrame]);
+    if (el) el.classList.add('active');
+  }
+
+  // ── Idle cycling ─────────────────────────────────────────────────
+  function startIdle() {
+    stopIdle();
+    idleTimer = setInterval(function() {
+      if (isEvent) return;
+      var el = document.getElementById(idleFrameIds[idleFrame]);
+      if (el) el.classList.remove('active');
+      idleFrame = (idleFrame + 1) % idleFrameIds.length;
+      var ne = document.getElementById(idleFrameIds[idleFrame]);
+      if (ne) ne.classList.add('active');
+    }, 1600);
+  }
+  function stopIdle() {
+    if (idleTimer) { clearInterval(idleTimer); idleTimer = null; }
+  }
+
+  // ── Event sprite animation (loops through 4 frames) ─────────────
+  function startAnim(frames) {
+    stopAnim();
+    var frame = 0;
+    hideAll();
+    var el = document.getElementById(frames[0]);
+    if (el) el.classList.add('active');
+    animTimer = setInterval(function() {
+      var prev = document.getElementById(frames[frame]);
+      if (prev) prev.classList.remove('active');
+      frame = (frame + 1) % frames.length;
+      var next = document.getElementById(frames[frame]);
+      if (next) next.classList.add('active');
+    }, ANIM_SPEED);
+  }
+  function stopAnim() {
+    if (animTimer) { clearInterval(animTimer); animTimer = null; }
+  }
+
+  // ── Stat bars ────────────────────────────────────────────────────
+  function updateStats() {
+    hunger  = Math.min(100, Math.max(0, hunger));
+    loyalty = Math.min(100, Math.max(0, loyalty));
+    var hf = document.getElementById('hungerFill');
+    var lf = document.getElementById('loyaltyFill');
+    if (hf) hf.style.width = hunger + '%';
+    if (lf) lf.style.width = loyalty + '%';
+  }
+
+  // Passive hunger drain
+  setInterval(function() {
+    if (!isEvent) { hunger = Math.max(0, hunger - 1.5); updateStats(); }
+  }, 3000);
+
+  // ── Chat log ─────────────────────────────────────────────────────
+  var chatQueue = [];
+  var chatProcessing = false;
+
+  function addChatLine(user, userClass, message) {
+    chatQueue.push({ user: user, userClass: userClass, message: message });
+    if (!chatProcessing) processChatQueue();
+  }
+
+  function processChatQueue() {
+    if (chatQueue.length === 0) { chatProcessing = false; return; }
+    chatProcessing = true;
+    var item = chatQueue.shift();
+    var log = document.getElementById('chatLog');
+    if (!log) { chatProcessing = false; return; }
+    var lines = log.querySelectorAll('.chat-line');
+    if (lines.length >= 2) lines[0].remove();
+    log.querySelectorAll('.chat-line').forEach(function(l) { l.classList.remove('visible'); });
+    var line = document.createElement('div');
+    line.className = 'chat-line';
+    line.innerHTML = '<span class="chat-user ' + item.userClass + '">' + item.user + ':</span> ' + item.message;
+    log.appendChild(line);
+    setTimeout(function() {
+      line.classList.add('visible');
+      log.querySelectorAll('.chat-line').forEach(function(l) { l.classList.add('visible'); });
+      setTimeout(processChatQueue, 800);
+    }, 50);
+  }
+
+  // ── Cooldown ─────────────────────────────────────────────────────
+  function startCooldown(name) {
+    var btn     = document.getElementById('btn-' + name);
+    var bar     = document.getElementById('cd-' + name);
+    if (!btn || !bar) return;
+    var trigger = btn.querySelector('.btn-trigger') || btn.querySelector('.demo-btn-trigger');
+    var origText = trigger ? trigger.textContent : '';
+    cooldowns[name] = true;
+    btn.disabled = true;
+    if (trigger) trigger.textContent = 'ON COOLDOWN';
+    bar.style.transition = 'none';
+    bar.style.width = '100%';
+    bar.style.background = '#c0392b';
+    setTimeout(function() {
+      bar.style.transition = 'width ' + (COOLDOWN_MS / 1000) + 's linear';
+      bar.style.width = '0%';
+    }, 50);
+    setTimeout(function() {
+      cooldowns[name] = false;
+      btn.disabled = false;
+      if (trigger) trigger.textContent = origText;
+      bar.style.width = '0%';
+    }, COOLDOWN_MS);
+  }
+
+  // ── End event ────────────────────────────────────────────────────
+  function endEvent() {
+    isEvent = false;
+    if (eventTimer) { clearTimeout(eventTimer);  eventTimer = null; }
+    stopAnim();
+    // Hide any overlay images
+    ['overlay-bits', 'overlay-raid', 'overlay-subs'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.classList.remove('show');
+    });
+    resetToIdle();
+    var sc = document.getElementById('spriteContainer');
+    if (sc) sc.classList.add('bobbing');
+    startIdle();
+  }
+
+  // ── Main trigger ─────────────────────────────────────────────────
+  window.triggerEvent = function(name) {
+    if (cooldowns[name] || isEvent) return;
+
+    var msgs   = chatMessages[name] || [];
+    var frames = eventFrames[name];   // null for bits
+
+    isEvent = true;
+    stopIdle();
+    startCooldown(name);
+
+    // Shake device
+    var dev = document.getElementById('device');
+    if (dev) {
+      dev.style.animation = 'shakeDevice 0.4s ease';
+      setTimeout(function() { dev.style.animation = ''; }, 400);
+    }
+
+    // Stop bobbing
+    var sc = document.getElementById('spriteContainer');
+    if (sc) sc.classList.remove('bobbing');
+
+    // Send chat messages
+    msgs.forEach(function(m, i) {
+      setTimeout(function() { addChatLine(m[0], m[1], m[2]); }, i * 1800);
+    });
+
+    // ── bits: overlay image only (no in-sprite animation) ──
+    if (name === 'bitstemporary') {
+      var screen = document.getElementById('screen');
+      if (screen) {
+        screen.style.animation = 'flashWhite 0.5s';
+        setTimeout(function() { screen.style.animation = ''; }, 2500);
+      }
+      var overlay = document.getElementById('overlay-bits');
+      if (overlay) overlay.classList.add('show');
+      loyalty = Math.min(100, loyalty + 15);
+      updateStats();
+      eventTimer = setTimeout(endEvent, EVENT_MS);
+
+    // ── all other events: cycle their 4 sprite frames ──
+    } else {
+      // Feed also boosts hunger
+      if (name === 'feed') {
+        hunger  = Math.min(100, hunger + 35);
+        loyalty = Math.min(100, loyalty + 5);
+      } else if (name === 'subs')  { loyalty = Math.min(100, loyalty + 20); }
+      else if (name === 'raid')  { loyalty = Math.min(100, loyalty - 25); }
+	  else if (name === 'bits')  { loyalty = Math.min(100, loyalty + 25); }
+      else if (name === 'mob')   { loyalty = Math.min(100, loyalty + 10); }
+      else if (name === 'motel') { loyalty = Math.min(100, loyalty + 8);  }
+      updateStats();
+
+      // Flash screen on raid/subs
+      if (name === 'raid' || name === 'subs') {
+        var screen = document.getElementById('screen');
+        if (screen) {
+          screen.style.animation = 'flashWhite 0.5s';
+          setTimeout(function() { screen.style.animation = ''; }, 1500);
+        }
+      }
+
+      startAnim(frames);
+      eventTimer = setTimeout(endEvent, EVENT_MS);
+    }
+  };
+
+  // ── Passive idle chat ────────────────────────────────────────────
+  var idleChats = [
+    ['PogChampGuy', '', '!feed'],
+    ['Viewer_99', '', 'how do I trigger the raid??'],
+    ['TwitchFan', 'gold', 'this overlay is insane'],
+    ['RegularViewer', '', 'Tony looks mad lol'],
+    ['NewFollower', '', 'what is this overlay?? PogChamp'],
+    ['Honeycomb', 'gold', 'chat go crazy with the bits'],
+  ];
+  var idleChatIdx = 0;
+  setInterval(function() {
+    if (isEvent) return;
+    var m = idleChats[idleChatIdx % idleChats.length];
+    addChatLine(m[0], m[1], m[2]);
+    idleChatIdx++;
+  }, 5000);
+
+  // ── Init ─────────────────────────────────────────────────────────
+  function init() {
+    var sc = document.getElementById('spriteContainer');
+    if (sc) sc.classList.add('bobbing');
+    startIdle();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();
+</script>
+</div></div>
+</div>
 </section>
 
 <!-- PROOF BAR -->
 <div class="proof-bar">
-  <div class="proof-item">
-    <div class="proof-num">100%</div>
-    <div class="proof-desc condensed">Chat-Controlled</div>
-  </div>
-  <div class="proof-divider"></div>
-  <div class="proof-item">
-    <div class="proof-num">OBS</div>
-    <div class="proof-desc condensed">Ready to Drop In</div>
-  </div>
-  <div class="proof-divider"></div>
-  <div class="proof-item">
-    <div class="proof-num">8-BIT</div>
-    <div class="proof-desc condensed">Pixel Art Character</div>
-  </div>
-  <div class="proof-divider"></div>
-  <div class="proof-item">
-    <div class="proof-num">$47</div>
-    <div class="proof-desc condensed">One-Time Price</div>
-  </div>
-  <div class="proof-divider"></div>
-  <div class="proof-item">
-    <div class="proof-num">∞</div>
-    <div class="proof-desc condensed">Chaos Events</div>
-  </div>
+<div class="proof-item">
+<div class="proof-num">100%</div>
+<div class="proof-desc condensed">Chat-Controlled</div>
 </div>
-
+<div class="proof-divider"></div>
+<div class="proof-item">
+<div class="proof-num">OBS</div>
+<div class="proof-desc condensed">Ready to Drop In</div>
+</div>
+<div class="proof-divider"></div>
+<div class="proof-item">
+<div class="proof-num">8-BIT</div>
+<div class="proof-desc condensed">Pixel Art Character</div>
+</div>
+<div class="proof-divider"></div>
+<div class="proof-item">
+<div class="proof-num">$47</div>
+<div class="proof-desc condensed">One-Time Price</div>
+</div>
+<div class="proof-divider"></div>
+<div class="proof-item">
+<div class="proof-num">∞</div>
+<div class="proof-desc condensed">Chaos Events</div>
+</div>
+</div>
 <!-- HOW IT WORKS -->
 <section class="how-it-works">
-  <p class="section-label">How It Works</p>
-  <h2 class="section-title display">FUGGEDABOUTIT.<br>IT JUST RUNS.</h2>
-  <div class="steps-grid">
-    <div class="step">
-      <span class="step-num">01</span>
-      <div class="step-title">Buy & Download</div>
-      <p class="step-body">Grab the overlay file and drop it straight into OBS as a browser source. No coding. No configuration nightmares. Just a few quick prompts till Tony's ready to go.</p>
-      <span class="step-tag">One-Time Setup</span>
-    </div>
-    <div class="step">
-      <span class="step-num">02</span>
-      <div class="step-title">Connect to Twitch</div>
-      <p class="step-body">Link your Twitch channel events — subs, bits, raids, resubs. Every action from chat feeds directly into the overlay and triggers Tony's reactions.</p>
-      <span class="step-tag">Twitch Events API</span>
-    </div>
-    <div class="step">
-      <span class="step-num">03</span>
-      <div class="step-title">Let Chat Go Wild</div>
-      <p class="step-body">Your audience feeds Tony, funds his operations, or sends the FBI crashing through the door. Every stream session becomes a live-action soap opera.</p>
-      <span class="step-tag">Real-Time Chaos</span>
-    </div>
-  </div>
+<p class="section-label">How It Works</p>
+<h2 class="section-title display">FUGGEDABOUTIT.<br/>IT JUST RUNS.</h2>
+<div class="steps-grid">
+<div class="step">
+<span class="step-num">01</span>
+<div class="step-title">Buy &amp; Download</div>
+<p class="step-body">Grab the overlay file and drop it straight into OBS as a browser source. No coding. No configuration nightmares. Just a few quick prompts till Tony's ready to go.</p>
+<span class="step-tag">One-Time Setup</span>
+</div>
+<div class="step">
+<span class="step-num">02</span>
+<div class="step-title">Connect to Twitch</div>
+<p class="step-body">Link your Twitch channel events — subs, bits, raids, resubs. Every action from chat feeds directly into the overlay and triggers Tony's reactions.</p>
+<span class="step-tag">Twitch Events API</span>
+</div>
+<div class="step">
+<span class="step-num">03</span>
+<div class="step-title">Let Chat Go Wild</div>
+<p class="step-body">Your audience feeds Tony, funds his operations, or sends the FBI crashing through the door. Every stream session becomes a live-action soap opera.</p>
+<span class="step-tag">Real-Time Chaos</span>
+</div>
+</div>
 </section>
-
 <!-- FEATURES -->
 <section class="features-section">
-  <p class="section-label">What's Included</p>
-  <h2 class="section-title display">EVERY ANGLE<br>IS COVERED.</h2>
-  <div class="features-layout">
-    <div class="feature-card" style="--icon: url('raid.png')">
-      <div class="feature-card-title">Raid the Compound</div>
-      <p class="feature-card-body">When a raid hits, the FBI busts through the door. Full animated sequence. Tony scrambles. Chat goes berserk.</p>
-      <span class="feature-trigger">TRIGGER: INCOMING RAID</span>
-    </div>
-    <div class="feature-card" style="--icon: url('subs.png')">
-      <div class="feature-card-title">Put the Subs in the Bag</div>
-      <p class="feature-card-body">Gifted subs trigger a custom money-bag alert animation. The more subs gifted, the more elaborate the chaos.</p>
-      <span class="feature-trigger">TRIGGER: GIFTED SUBS</span>
-    </div>
-    <div class="feature-card" style="--icon: url('bits.png')">
-      <div class="feature-card-title">It's Rainin' Bits</div>
-      <p class="feature-card-body">Big bit donations trigger a money rain sequence across the screen. Scaled to the size of the cheer. All Bits are converted to in game cash for Chat to use for whatever they please.</p>
-      <span class="feature-trigger">TRIGGER: BIT DONATION</span>
-    </div>
-    <div class="feature-card" style="--icon: url('loyalty.png')">
-      <div class="feature-card-title">Loyalty Rewarded</div>
-      <p class="feature-card-body">Everyone who participates gets put on a local leaderboard. Tony acknowledges the loyalty, and they can fall under 1 of 5 rankings depending on their involvement .</p>
-      <span class="feature-trigger">TRIGGER: LOYALTY</span>
-    </div>
-    <div class="feature-accent">
-  <div class="feature-accent-left">
-    <div class="feature-accent-title display">CUSTOM<br><span>PIXEL</span><br>CHARACTER</div>
-    <p class="feature-accent-body">Tony Soprano is the base model. Commission a custom 8-bit character built around your stream persona, inside jokes, and branding. A unique digital mascot that's all yours</p>
-  </div>
-
-  <div class="feature-accent-right">
-  
-  <div class="accent-pixel-stack">
-       <img src="honey2.png" class="accent-pixel-icon" alt="Custom Pixel Art">
-	<img src="honey1.png" class="accent-pixel-icon" alt="Custom Pixel Art">
-
-    <p class="section-label">Custom For</p>
-    <div class="step-title">twitch.tv/honeycomb</div>
-  </div>
-
-  <a href="https://soundbyteinteractive.github.io/Custom/" class="btn-primary"> 
+<p class="section-label">What's Included</p>
+<h2 class="section-title display">EVERY ANGLE<br/>IS COVERED.</h2>
+<div class="features-layout">
+<div class="feature-card" style="--icon: url('raid1.png')">
+<div class="feature-card-title">Raid the Compound</div>
+<p class="feature-card-body">When a raid hits, the FBI busts through the door. Full animated sequence. Tony scrambles. Chat goes berserk.</p>
+<span class="feature-trigger">TRIGGER: INCOMING RAID</span>
+</div>
+<div class="feature-card" style="--icon: url('subs0.png')">
+<div class="feature-card-title">Put the Subs in the Bag</div>
+<p class="feature-card-body">Gifted subs trigger a custom money-bag alert animation. The more subs gifted, the more elaborate the chaos.</p>
+<span class="feature-trigger">TRIGGER: GIFTED SUBS</span>
+</div>
+<div class="feature-card" style="--icon: url('bits.png')">
+<div class="feature-card-title">It's Rainin' Bits</div>
+<p class="feature-card-body">Big bit donations trigger a money rain sequence across the screen. Scaled to the size of the cheer. All Bits are converted to in game cash for Chat to use for whatever they please.</p>
+<span class="feature-trigger">TRIGGER: BIT DONATION</span>
+</div>
+<div class="feature-card" style="--icon: url('loyalty.png')">
+<div class="feature-card-title">Loyalty Rewarded</div>
+<p class="feature-card-body">Everyone who participates gets put on a local leaderboard. Tony acknowledges the loyalty, and they can fall under 1 of 5 rankings depending on their involvement .</p>
+<span class="feature-trigger">TRIGGER: LOYALTY</span>
+</div>
+<div class="feature-accent">
+<div class="feature-accent-left">
+<div class="feature-accent-title display">CUSTOM<br/><span>PIXEL</span><br/>CHARACTER</div>
+<p class="feature-accent-body">Tony Soprano is the base model. Commission a custom 8-bit character built around your stream persona, inside jokes, and branding. A unique digital mascot that's all yours</p>
+</div>
+<div class="feature-accent-right">
+<div class="accent-pixel-stack">
+<img alt="Custom Pixel Art" class="accent-pixel-icon" src="TONY11.png"/>
+<img alt="Custom Pixel Art" class="accent-pixel-icon" src="honey1.png"/>
+<p class="section-label">Custom For</p>
+<div class="step-title">twitch.tv/honeycomb</div>
+</div>
+<a class="btn-primary" href="https://soundbyteinteractive.github.io/Custom/">
     Get Custom Quote Starting at $199
   </a>
-
 </div>
 </div>
-</section>
-
+</div></section>
 <!-- QUOTE -->
 <div class="quote-band">
-  <p class="quote-text">"My chat went from passive viewers to co-creators. Everyone's fighting to be the one who triggers the next event. Engagement through the roof."</p>
-  <p class="quote-attribution"><strong>@Honeycomb</strong> — Twitch Streamer</p>
+<p class="quote-text">"My chat went from passive viewers to co-creators. Everyone's fighting to be the one who triggers the next event. Engagement through the roof."</p>
+<p class="quote-attribution"><strong>@Honeycomb</strong> — Twitch Streamer</p>
 </div>
-
 <!-- PRICING -->
 <section class="pricing-section">
-  <p class="section-label">Get The Overlay</p>
-  <h2 class="section-title display">ONE PRICE.<br>NO RECURRING.</h2>
-  <div class="pricing-inner">
-    <div class="pricing-card featured">
-      <div class="pricing-product-name">Tonygatchi — Full Overlay</div>
-      <div class="pricing-price-main">$47</div>
-      <div class="pricing-price-sub">One-time payment. No subscription.</div>
-      <div class="pricing-divider"></div>
-      <div class="pricing-includes-label">Everything included</div>
-      <ul class="pricing-items">
-        <li>Tony Soprano pixel art character (OBS browser source)</li>
-        <li>Raid, Sub, Bit Interactions & more: Chat events to drive engagement </li>
-        <li>12 Command Actions: Combines nostalgic pet care with real-time audience interaction</li>
-        <li>50 Variations: Every Action has multiple randomzied Paths, to keep chat entertained  </li>
-        <li>Stats: Custom loyalty leaderboard</li>
-        <li>Twitch Events API integration</li>
-        <li>Full OBS setup guide included</li>
-        <li>Lifetime access</li>
-      </ul>
-      <a href="https://www.paypal.com/ncp/payment/3WUJHJ9S5NE42" class="btn-buy">Get Instant Access →</a>
-      <p class="guarantee-note">Secure checkout · Instant delivery</p>
-    </div>
-
-    <div class="pricing-trust">
-      <h3 class="trust-headline display">BUILT FOR<br><span>REAL</span><br>STREAMERS.</h3>
-      <p class="trust-body">This isn't a template. Every animation was designed to create the kind of spontaneous, shareable moment that drives clips, follows, and subs. If your chat is already active, Tonygatchi turns them into performers.</p>
-
-      <div class="faq-item">
-        <div class="faq-q">What streaming software does it work with?</div>
-        <p class="faq-a">OBS Studio and Streamlabs OBS. Add as a browser source absolutely no plugins required.</p>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Do I need coding experience?</div>
-        <p class="faq-a">None. The setup guide walks you through every step. If you can add a browser source in OBS, you can run Tonygatchi.</p>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Can I get a custom character version?</div>
-        <p class="faq-a">Yes. DM on Twitch or Discord to commission a fully custom 8-bit character built around your stream persona and branding. Brightsidebookings@gmail.com </p>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">Is this going to be mass distributed</div>
-        <p class="faq-a">Absolutely not. I am only PERSONALLY reaching out to a limited amount of streamers, To keep this as unique to as little peoples stream as possible and maximize </p>
-      </div>
-    </div>
-  </div>
+<p class="section-label">Get The Overlay</p>
+<h2 class="section-title display">ONE PRICE.<br/>NO RECURRING.</h2>
+<div class="pricing-inner">
+<div class="pricing-card featured">
+<div class="pricing-product-name">Tonygatchi — Full Overlay</div>
+<div class="pricing-price-main">$47</div>
+<div class="pricing-price-sub">One-time payment. No subscription.</div>
+<div class="pricing-divider"></div>
+<div class="pricing-includes-label">Everything included</div>
+<ul class="pricing-items">
+<li>Tony Soprano pixel art character (OBS browser source)</li>
+<li>Raid, Sub, Bit Interactions &amp; more: Chat events to drive engagement </li>
+<li>12 Command Actions: Combines nostalgic pet care with real-time audience interaction</li>
+<li>50 Variations: Every Action has multiple randomzied Paths, to keep chat entertained  </li>
+<li>Stats: Custom loyalty leaderboard</li>
+<li>Twitch Events API integration</li>
+<li>Full OBS setup guide included</li>
+<li>Lifetime access</li>
+</ul>
+<a class="btn-buy" href="https://www.paypal.com/ncp/payment/3WUJHJ9S5NE42">Get Instant Access →</a>
+<p class="guarantee-note">Secure checkout · Instant delivery</p>
+</div>
+<div class="pricing-trust">
+<h3 class="trust-headline display">BUILT FOR<br/><span>REAL</span><br/>STREAMERS.</h3>
+<p class="trust-body">This isn't a template. Every animation was designed to create the kind of spontaneous, shareable moment that drives clips, follows, and subs. If your chat is already active, Tonygatchi turns them into performers.</p>
+<div class="faq-item">
+<div class="faq-q">What streaming software does it work with?</div>
+<p class="faq-a">OBS Studio and Streamlabs OBS. Add as a browser source absolutely no plugins required.</p>
+</div>
+<div class="faq-item">
+<div class="faq-q">Do I need coding experience?</div>
+<p class="faq-a">None. The setup guide walks you through every step. If you can add a browser source in OBS, you can run Tonygatchi.</p>
+</div>
+<div class="faq-item">
+<div class="faq-q">Can I get a custom character version?</div>
+<p class="faq-a">Yes. DM on Twitch or Discord to commission a fully custom 8-bit character built around your stream persona and branding. Brightsidebookings@gmail.com </p>
+</div>
+<div class="faq-item">
+<div class="faq-q">Is this going to be mass distributed</div>
+<p class="faq-a">Absolutely not. I am only PERSONALLY reaching out to a limited amount of streamers, To keep this as unique to as little peoples stream as possible and maximize </p>
+</div>
+</div>
+</div>
 </section>
-
 <!-- TESTIMONIALS -->
 <section class="testimonials-section">
-  <p class="section-label">From The Community</p>
-  <h2 class="section-title display">THE CHAT<br>HAS SPOKEN.</h2>
-  <div class="testimonials-grid">
-    <div class="testimonial-card">
-      <p class="testimonial-text">"First stream I ran this, someone immediately started a bit war just to trigger the money rain. $25 in bits in 10 minutes. That's the overlay doing its job."</p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar">FG</div>
-        <div>
-          <div class="testimonial-name">FractalGrove</div>
-          <div class="testimonial-handle">@fractalgrove · Twitch</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <p class="testimonial-text">"The FBI raid animation during a raid is genuinely the funniest thing I've seen on a stream. Whoever raids me is now a part of the show. Keeps people coming back."</p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar">L8</div>
-        <div>
-          <div class="testimonial-name">Lov8</div>
-          <div class="testimonial-handle">@l_o_v8music · Twitch</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <p class="testimonial-text">"Within the first hour my mods were already competing to giftsub just to see Tony react. Totally worth it."</p>
-      <div class="testimonial-author">
-        <div class="testimonial-avatar">MP</div>
-        <div>
-          <div class="testimonial-name">Marketing Porpoises</div>
-          <div class="testimonial-handle">@marketing_porpoises · Twitch</div>
-        </div>
-      </div>
-    </div>
-  </div>
+<p class="section-label">From The Community</p>
+<h2 class="section-title display">THE CHAT<br/>HAS SPOKEN.</h2>
+<div class="testimonials-grid">
+<div class="testimonial-card">
+<p class="testimonial-text">"First stream I ran this, someone immediately started a bit war just to trigger the money rain. $25 in bits in 10 minutes. That's the overlay doing its job."</p>
+<div class="testimonial-author">
+<div class="testimonial-avatar">FG</div>
+<div>
+<div class="testimonial-name">FractalGrove</div>
+<div class="testimonial-handle">@fractalgrove · Twitch</div>
+</div>
+</div>
+</div>
+<div class="testimonial-card">
+<p class="testimonial-text">"The FBI raid animation during a raid is genuinely the funniest thing I've seen on a stream. Whoever raids me is now a part of the show. Keeps people coming back."</p>
+<div class="testimonial-author">
+<div class="testimonial-avatar">L8</div>
+<div>
+<div class="testimonial-name">Lov8</div>
+<div class="testimonial-handle">@l_o_v8music · Twitch</div>
+</div>
+</div>
+</div>
+<div class="testimonial-card">
+<p class="testimonial-text">"Within the first hour my mods were already competing to giftsub just to see Tony react. Totally worth it."</p>
+<div class="testimonial-author">
+<div class="testimonial-avatar">MP</div>
+<div>
+<div class="testimonial-name">Marketing Porpoises</div>
+<div class="testimonial-handle">@marketing_porpoises · Twitch</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- FINAL CTA -->
 <section class="final-cta">
-  <h2 class="final-cta-headline display">YOUR CHAT<br>WANTS TO<br><span>PLAY BOSS.</span></h2>
-  <p class="final-cta-sub condensed">Interactive Twitch Overlay · $47 One-Time · Instant Delivery</p>
-  <a href="https://www.paypal.com/ncp/payment/3WUJHJ9S5NE42" class="btn-primary">Get Tonygatchi Now</a>
+<h2 class="final-cta-headline display">YOUR CHAT<br/>WANTS TO<br/><span>PLAY BOSS.</span></h2>
+<p class="final-cta-sub condensed">Interactive Twitch Overlay · $47 One-Time · Instant Delivery</p>
+<a class="btn-primary" href="https://www.paypal.com/ncp/payment/3WUJHJ9S5NE42">Get Tonygatchi Now</a>
 </section>
-
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">TONY<span>GATCHI</span></div>
-  <div class="footer-copy">An interactive Twitch Chat Overlay &copy; 2025 BrightSide Movement</div>
+<div class="footer-logo">TONY<span>GATCHI</span></div>
+<div class="footer-copy">An interactive Twitch Chat Overlay © 2025 BrightSide Movement</div>
 </footer>
-
 </body>
 </html>
-
